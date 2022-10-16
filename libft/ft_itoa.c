@@ -3,76 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollito <cpollito@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 19:51:55 by cpollito          #+#    #+#             */
-/*   Updated: 2021/11/08 16:55:54 by cpollito         ###   ########.fr       */
+/*   Created: 2021/10/25 19:06:55 by ateak             #+#    #+#             */
+/*   Updated: 2021/10/25 19:38:18 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_n(long n)
+static char	*min_int(char *str, int len)
 {
-	int	len_n;
+	int	nbr;
 	int	i;
 
-	i = 0;
-	if (n == 0)
-		return (2);
-	if (n < 0)
-		len_n = 1;
-	else
-		len_n = 0;
+	nbr = 147483648;
+	i = len;
+	while (len > 0)
+	{
+		str[len - 1] = nbr % 10 + '0';
+		nbr = nbr / 10;
+		len--;
+		if (len == 2)
+		{
+			str[0] = '-';
+			str[1] = '2';
+			len = 0;
+		}
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+static int	n_len(int n)
+{
+	int	len;
+
+	len = 0;
+	if (n <= 0)
+		len = 1;
 	while (n != 0)
 	{
 		n = n / 10;
-		i++;
+		len++;
 	}
-	len_n = len_n + i;
-	return (len_n + 1);
+	return (len);
 }
 
-static char	*ft_myitoa(long n, char *str, int len)
+static int	n_sign(int n)
 {
-	int	i;
+	int	sign;
 
-	i = 0;
+	sign = 1;
 	if (n < 0)
-	{
-		n = n * (-1);
-		i++;
-	}
-	if (n == 0)
-	{
-		str[0] = '0';
-	}
-	str[len - 1] = '\0';
-	if (n > 0)
-	{
-		while (n != 0)
-		{
-			str[len - 2] = (n % 10) + '0';
-			n = n / 10;
-			len--;
-		}
-		if (i == 1)
-			str[0] = '-';
-	}
-	return (str);
+		sign = -1;
+	return (sign);
 }
 
 char	*ft_itoa(int n)
 {
-	int		len;
 	char	*str;
-	long	x;
+	int		nbr;
+	int		sign;
+	int		len;
+	int		i;
 
-	x = (long)n;
-	len = ft_len_n(x);
-	str = (char *)malloc(sizeof(char) * len);
-	if (!str)
+	sign = n_sign(n);
+	nbr = n * sign;
+	len = n_len(n);
+	i = len;
+	str = (char *)malloc(len + 1);
+	if (str == NULL)
 		return (NULL);
-	ft_myitoa(x, str, len);
+	if (nbr == -2147483648)
+		return (min_int(str, len));
+	while (len > 0)
+	{
+		str[len - 1] = nbr % 10 + '0';
+		nbr = nbr / 10;
+		len--;
+	}
+	if (sign == -1)
+		str[0] = '-';
+	str[i] = '\0';
 	return (str);
 }

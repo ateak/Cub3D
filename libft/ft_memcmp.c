@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollito <cpollito@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 17:03:44 by cpollito          #+#    #+#             */
-/*   Updated: 2021/11/08 15:22:17 by cpollito         ###   ########.fr       */
+/*   Created: 2021/10/10 16:54:56 by ateak             #+#    #+#             */
+/*   Updated: 2021/10/20 18:26:19 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*s11;
-	unsigned char	*s22;
+	unsigned char	*str1;
+	unsigned char	*str2;
 	size_t			i;
 
-	s11 = (unsigned char *)s1;
-	s22 = (unsigned char *)s2;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (i <= (n - 1))
+	while (i < n)
 	{
-		if ((s11[i] != s22[i] && s11[i] > s22[i]))
-			return (s11[i] - s22[i]);
-		if (s11[i] != s22[i] && s11[i] < s22[i])
-			return (s11[i] - s22[i]);
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 		i++;
 	}
 	return (0);

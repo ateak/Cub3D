@@ -1,27 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 14:44:06 by ateak             #+#    #+#             */
-/*   Updated: 2021/10/21 15:33:34 by ateak            ###   ########.fr       */
+/*   Created: 2022/10/16 13:03:15 by ateak             #+#    #+#             */
+/*   Updated: 2022/10/16 20:41:44 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_error_exit(char *str)
+{
+	printf("Error\n%s\n", str);
+	exit(EXIT_FAILURE);
+}
+
+void	free_ptr(char *ptr)
+{
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
+}
+
+void	free_arr(char **arr)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
+	while (arr[i])
 	{
-		write(fd, &s[i], 1);
+		if (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL; 
+		}
+		i++;
+	}
+	free(arr);
+	arr = NULL; 
+}
+
+void	print_arr(t_info *data)
+{
+	int i = 0;
+
+	while (data->map->data[i])
+	{
+		printf("%s\n", data->map->data[i]);
 		i++;
 	}
 }

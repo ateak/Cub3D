@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 17:31:49 by cpollito          #+#    #+#             */
-/*   Updated: 2022/09/05 13:15:40 by ateak            ###   ########.fr       */
+/*   Created: 2021/10/16 17:37:51 by ateak             #+#    #+#             */
+/*   Updated: 2022/03/20 14:28:33 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	if (!s)
+	unsigned char	*str;
+	int				i;
+
+	str = (unsigned char *)s;
+	i = 0;
+	if (!str)
 		return (NULL);
-	while (*s != '\0')
+	while (str[i])
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (str[i] == (unsigned char)c)
+			return ((char *)&str[i]);
+		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
+	if ((unsigned char)c == '\0')
+		return ((char *)&str[i]);
 	return (NULL);
 }

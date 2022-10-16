@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollito <cpollito@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 22:18:04 by cpollito          #+#    #+#             */
-/*   Updated: 2021/11/10 13:48:25 by cpollito         ###   ########.fr       */
+/*   Created: 2021/10/17 16:29:36 by ateak             #+#    #+#             */
+/*   Updated: 2021/10/20 18:02:19 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
+	unsigned char	*str1;
+	unsigned char	*str2;
 	size_t			i;
-	unsigned char	*s11;
-	unsigned char	*s22;
 
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	i = 0;
-	s11 = (unsigned char *)s1;
-	s22 = (unsigned char *)s2;
-	if (n == 0)
+	if (n <= 0)
 		return (0);
-	while (i < n)
-	{
-		if ((s11[i] != s22[i] && s11[i] > s22[i]))
-			return (s11[i] - s22[i]);
-		if (s11[i] != s22[i] && s11[i] < s22[i])
-			return (s11[i] - s22[i]);
-		if (!s11[i] || !s22[i])
-			return (0);
+	if (str1 == 0 && str2 == 0)
+		return (0);
+	while (str1[i] != '\0' && str1[i] == str2[i] && i < n - 1)
 		i++;
-	}
-	return (0);
+	return (str1[i] - str2[i]);
 }

@@ -3,102 +3,121 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollito <cpollito@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/27 20:23:16 by cpollito          #+#    #+#             */
-/*   Updated: 2022/07/22 17:52:59 by cpollito         ###   ########.fr       */
+/*   Created: 2021/11/07 18:25:55 by ateak             #+#    #+#             */
+/*   Updated: 2021/11/10 18:05:47 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count_words(char const *str, char del)
+static void	**ft_free(char **arr, size_t m)
 {
-	int	i;
-	int	k;
+	size_t	i;
 
 	i = 0;
-	k = 0;
-	while (str[i])
+	while (i < m)
 	{
-		if (str[i] == del)
-			i++;
-		else
-		{
-			k++;
-			while (str[i] != del && str[i] != '\0')
-				i++;
-		}
-	}
-	return (k);
-}
-
-static char	*ft_word(char const *str, char del)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	while (str[i] && str[i] != del)
+		free(arr[i]);
 		i++;
-	word = (char *)malloc(sizeof(char) * (i + 1));
-	if (!word)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != del)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	word [i] = '\0';
-	return (word);
-}
-
-static void	free_all(char **arr, int i)
-{
-	while (i > 0)
-	{
-		free(arr[i - 1]);
-		i--;
 	}
 	free(arr);
+	arr = NULL;
+	return (NULL);
 }
 
-char	**create_array_words(char const *s, char c, int *i, char **array_words)
+static char	**malloc_for_words(char const *s, char c)
 {
-	array_words[*i] = ft_word(s, c);
-	if (array_words[*i] == NULL)
+	size_t	i;
+	size_t	words_nbr;
+	char	**words_arr;
+
+	i = 0;
+	words_nbr = 0;
+	while (s[i])
 	{
-		free_all(array_words, *i);
-		return (NULL);
+		if (s[i] == c || s[i] == '\0')
+			i++;
+		while (s[i] != c && s[i])
+		{
+			i++;
+			if (s[i] == c || s[i] == '\0')
+				words_nbr++;
+		}
 	}
-	return (array_words);
+	words_arr = (char **)malloc(sizeof(char *) * (words_nbr + 1));
+	return (words_arr);
+}
+
+static char	**malloc_for_elem(char const *s, char c, char **split_arr, size_t i)
+{
+	size_t	m;
+	size_t	elem_nbr;
+
+	m = 0;
+	elem_nbr = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			i++;
+		while (s[i] != c && s[i])
+		{
+			elem_nbr++;
+			i++;
+		}
+		if (elem_nbr > 0)
+		{
+			split_arr[m] = (char *)malloc(sizeof(char) * (elem_nbr + 1));
+			if (split_arr[m] == NULL)
+				return ((char **)ft_free(split_arr, m));
+			elem_nbr = 0;
+			m++;
+		}
+	}
+	return (split_arr);
+}
+
+static char	**stuff_split_arr(char const *s, char c, char **split_arr, size_t i)
+{
+	size_t	m;
+	size_t	n;
+
+	m = 0;
+	n = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			i++;
+		while (s[i] != c && s[i])
+		{
+			split_arr[m][n] = s[i];
+			i++;
+			n++;
+		}
+		if (n > 0)
+		{
+			split_arr[m][n] = '\0';
+			n = 0;
+			m++;
+		}
+	}
+	split_arr[m] = NULL;
+	return (split_arr);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char			**array_words;
-	int				words;
-	int				i;
+	char	**split_arr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
-	words = ft_count_words(s, c);
-	array_words = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!array_words)
-		return (NULL);
 	i = 0;
-	while (i < words)
-	{
-		while (*s && *s == c)
-			s++;
-		array_words = create_array_words(s, c, &i, array_words);
-		if (!array_words)
-			return (NULL);
-		i++;
-		while (*s != '\0' && *s != c)
-			s++;
-	}
-	array_words[i] = NULL;
-	return (array_words);
+	split_arr = malloc_for_words(s, c);
+	if (split_arr == NULL)
+		return (NULL);
+	split_arr = malloc_for_elem(s, c, split_arr, i);
+	split_arr = stuff_split_arr(s, c, split_arr, i);
+	return (split_arr);
 }

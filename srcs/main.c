@@ -6,57 +6,132 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:19:38 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/15 19:44:29 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/16 20:51:17 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void	ft_error_exit(char *str)
+int	ft_find_param_name(char *str)
 {
-	printf("Error\n%s\n", str);
-	exit(EXIT_FAILURE);
+	if (ft_strcmp(str, "NO") == 0 || ft_strcmp(str, "SO") == 0
+		|| ft_strcmp(str, "WE") == 0 || ft_strcmp(str, "EA") == 0
+		|| ft_strcmp(str, "C") == 0 || ft_strcmp(str, "F") == 0)
+		return (1);
+	return (0);
 }
 
-void	check_map_extension(char **argv)
+void	ft_params_save(t_glb *glb, char **splitted_line)
 {
-	char			*map_format;
-	int				len;
-	unsigned int	start;
+	if (ft_strcmp(splitted_line[0], "NO") == 0)
+		ft_texture_save(splitted_line, &glb->map.north_texture, glb);
+	else if (ft_strcmp(splitted_line[0], "SO") == 0)
+		ft_texture_save(splitted_line, &glb->map.south_texture, glb);
+	else if (ft_strcmp(splitted_line[0], "WE") == 0)
+		ft_texture_save(splitted_line, &glb->map.west_texture, glb);
+	else if (ft_strcmp(splitted_line[0], "EA") == 0)
+		ft_texture_save(splitted_line, &glb->map.east_texture, glb);
+	else if (ft_strcmp(splitted_line[0], "C") == 0)
+		ft_color_save(splitted_line, &glb->map.ceiling, glb);
+	else if (ft_strcmp(splitted_line[0], "F") == 0)
+		ft_color_save(splitted_line, &glb->map.floor, glb);
+}
 
-	len = 4;
-	start = ft_strlen(argv[1]) - 4;
-	map_format = ft_substr(argv[1], start, len);
-	if (ft_strncmp(map_format, ".cub", len))
+int	ft_emptyline(char **tmp_map, int *i, char **splitted_line)
+{
+	if (splitted_line[0] == NULL)
 	{
-		free(map_format);
-		ft_error_exit("Wrong map extension!");
+		free_arr(splitted_line);
+		(*i)++;
+		return (1);
 	}
-	free(map_format);
+	if (tmp_map[*i][0] == '\n')
+	{
+		free_arr(splitted_line);
+		(*i)++;
+		return (1);
+	}
+	return (0);
 }
 
-void	first_check_map(int argc, char **argv)
+int	ft_pars_params(t_info *data, int i)
 {
-	int	fd;
+	char	**tmp_map;
+	char	**splitted_line;
 
-	if (argc != 2)
-		ft_error_exit("Wrong number of arguments!");
-	check_map_extension(argv);
-	fd = open(argv[1], O_RDWR);
-	if (fd < 0)
-		ft_error_exit("Can't open the file");
+	splitted_line = NULL;
+	tmp_map = data->map->data;
+	while (tmp_map[i] != NULL)
+	{
+		splitted_line = ft_split(tmp_map[i], ' ');
+		if (ft_emptyline(tmp_map, &i, splitted_line)) //освобождает пустые строки
+			continue ;
+		if (ft_find_param_name(splitted_line[0])) //есть ли в начале строки NO и тд
+			ft_params_save(data, splitted_line);//сохраняем пути текстур стен и цвет потолка и пола и заодно проверка валидности
+		else if (ft_emptyline(tmp_map, &i, splitted_line))
+			continue ;
+		else
+		{
+			if (data->map->map_components != 6)
+				ft_error_exit("There are not all parameters in the map!");
+			break ;
+		}
+		i++;
+		free_arr(splitted_line);
+	}
+	//free_arr(splitted_line);
+	return (i);
+}
+
+void	read_map(t_map *map, int fd)
+{
+	char	*map_string;
+	char	*tmp;
+	char	*tmp2;
+
+	map_string = NULL;
+	tmp = NULL;
+	tmp = get_next_line(fd);
+	if (tmp == NULL)
+		ft_error_exit("The map is empty!");
+	while (tmp)
+	{
+		tmp2 = map_string;
+		map_string = ft_strjoin(tmp2, tmp);
+		free_ptr(tmp2);
+		free_ptr(tmp);
+		tmp = get_next_line(fd);
+	}
+	map->data = ft_split(map_string, '\n');
+	free(map_string);
 	close(fd);
 }
+
+/*void	ft_parser_map_info(char **argv, t_info *data)
+{
+	char	**map;
+	int		i;
+
+	map = NULL;
+	i = 0;
+	void	read_map(t_game *map, int fd)
+}*/
+
 
 int	main(int argc, char **argv)
 {
 	t_info	*data;
+	int		fd;
 
-	first_check_map(argc, argv);
+	fd = first_check(argc, argv); //проверка кол-ва аргументов, fd, расширения файла
 	data = malloc(sizeof(t_info));
 	if (data == NULL)
 		ft_error_exit("Malloc for data failed");
+	ft_init_data(data);
+	read_map(data->map, fd); //сохраняем всю информацию из карты в двумерный массив
+	print_arr(data);
+
 
 	return (0);
 }

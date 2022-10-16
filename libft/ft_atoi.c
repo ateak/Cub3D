@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpollito <cpollito@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/23 17:11:44 by cpollito          #+#    #+#             */
-/*   Updated: 2021/11/08 15:24:35 by cpollito         ###   ########.fr       */
+/*   Created: 2021/10/18 19:20:31 by ateak             #+#    #+#             */
+/*   Updated: 2021/11/11 12:06:32 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	long	result;
-	int		znak;
+	long	res;
+	long	sign;
+	long	len;
 
-	i = 0;
-	result = 0;
-	znak = 1;
-	while ((str[i] == 32) || ((str[i] >= 9) && (str[i] <= 13)))
-		i++;
-	if (str[i] && (str[i] == '-' || str[i] == '+'))
+	res = 0;
+	sign = 1;
+	len = ft_strlen((char *)str);
+	if (len == 26)
+		return (-1);
+	if (len == 27)
+		return (0);
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign *= -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		if (str[i] == '-')
-		{
-			znak = -1;
-		}
-		i++;
+		res = res * 10 + *str - '0';
+		str++;
 	}
-	while ((str[i] >= '0') && (str[i] <= '9'))
-	{
-		result = result * 10;
-		result = result + (str[i] - '0');
-		i++;
-	}
-	return (result * znak);
+	return ((int)(res * sign));
 }

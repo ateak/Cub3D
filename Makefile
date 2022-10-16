@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/15 19:42:49 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/16 19:04:37 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,11 @@ NAME			=	cub3D
 NAME_BONUS		=	cub3D_bonus
 
 SRCS			=	./srcs/main.c\
+					./srcs/init.c\
+					./srcs/utils.c\
+					./srcs/parser_first_check.c\
+					get_next_line/get_next_line.c\
+					get_next_line/get_next_line_utils.c\
 
 SRCS_BONUS		=	
 
@@ -25,15 +30,17 @@ MLX_LIB			=	$(MLXDIR)/libmlx.a
 MLX				=	-L$(MLXDIR) -lft
 	
 					
-HEADER 			= 	./srcs/cub3d.h	
-HEADER_BONUS 	= 	./srcs_bonus/cub3d_bonus.h	
+HEADER 			= 	./srcs/cub3d.h\
+					get_next_line/get_next_line.h\	
+HEADER_BONUS 	= 	./srcs_bonus/cub3d_bonus.h\
+					get_next_line/get_next_line.h\
 
 OBJS			=	$(SRCS:%.c=%.o)
 OBJS_BONUS 		= 	$(SRCS_BONUS:%.c=%.o)
 OBJS_DIR		=	srcs/
 OBJS_DIR_BONUS	=	srcs_bonus/
 
-CFLAGS			=	-Wall -Wextra -Werror 
+CFLAGS			=	-Wall -Wextra -Werror -g
 MLX_FLAGS		=	-lmlx -framework OpenGL -framework AppKit
 
 RM = rm -f

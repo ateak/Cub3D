@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/25 12:39:28 by cpollito          #+#    #+#             */
-/*   Updated: 2022/09/05 13:03:45 by ateak            ###   ########.fr       */
+/*   Created: 2021/10/18 19:55:18 by ateak             #+#    #+#             */
+/*   Updated: 2021/11/10 15:54:21 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*s2;
+	char	*str1;
+	char	*str2;
+	int		size;
 	int		i;
 
-	if (!s1)
-		return (NULL);
+	str1 = (char *)s1;
+	size = ft_strlen(str1) + 1;
+	str2 = (char *)malloc(size);
 	i = 0;
-	s2 = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
-	if (!s2)
+	if (str2 == NULL)
 		return (NULL);
-	while (s1[i])
+	while (str1[i] != '\0')
 	{
-		s2[i] = s1[i];
+		str2[i] = str1[i];
 		i++;
 	}
-	s2[i] = '\0';
-	return (s2);
+	str2[i] = '\0';
+	return (str2);
 }
