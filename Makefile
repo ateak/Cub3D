@@ -6,19 +6,24 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/16 19:04:37 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/17 21:32:47 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	cub3D
 NAME_BONUS		=	cub3D_bonus
 
-SRCS			=	./srcs/main.c\
+SRCS			=	get_next_line/get_next_line.c\
+					get_next_line/get_next_line_utils.c\
+					./srcs/main.c\
 					./srcs/init.c\
 					./srcs/utils.c\
-					./srcs/parser_first_check.c\
-					get_next_line/get_next_line.c\
-					get_next_line/get_next_line_utils.c\
+					./srcs/first_check.c\
+					./srcs/parser_main.c\
+					./srcs/parser_get_colour_texture_info.c\
+					./srcs/parser_save_colour.c\
+					./srcs/parser_save_texture.c\
+									
 
 SRCS_BONUS		=	
 

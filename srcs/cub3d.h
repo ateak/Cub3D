@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/16 20:37:56 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:29:41 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,39 @@ typedef struct s_info
 }				t_info;
 
 
+//PARSER
+
+//first_check.c
 int		first_check(int argc, char **argv);
 void	check_map_extension(char **argv);
-void	ft_error_exit(char *str);
+
+//parser_main.c
+void	parser(t_info *data, int fd);
+void	get_map_data(t_map *map, int fd);
+
+//parser_get_colour_texture_info.c
+int		parse_map_data(t_info *data, int i);
+int		colour_texture_info(char *str);
+void	get_colour_texture_info(t_info *data, char **splitted_line);
+
+//parser_save_texture.c
+void	save_texture(char **splitted_line, char **texture_path, t_info *data);
+
+//parser_save_colour.c
+void	save_colour(char **splitted_line, char **colour, t_info *data);
+
+
+//init.c
 void	ft_init_data(t_info *data);
 void	ft_init_map(t_info *data);
-void	read_map(t_map *map, int fd);
-void	print_arr(t_info *data); //удалить
+
+//utils.c
+void	ft_error_exit(char *str);
 void	free_ptr(char *ptr);
 void	free_arr(char **arr);
+void	print_arr(t_info *data); //удалить
+void	print_map_struct(t_map *map); //удалить
+
 
 
 #endif
