@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/17 21:32:47 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/18 15:58:41 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS			=	get_next_line/get_next_line.c\
 					./srcs/parser_get_colour_texture_info.c\
 					./srcs/parser_save_colour.c\
 					./srcs/parser_save_texture.c\
+					./srcs/parser_check_map_lines.c\
 									
 
 SRCS_BONUS		=	

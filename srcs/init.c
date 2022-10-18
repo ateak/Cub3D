@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:02:07 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/16 20:38:10 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/18 15:55:17 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_init_map(t_info *data)
 	data->map->south_texture = NULL;
 	data->map->east_texture = NULL;
 	data->map->west_texture = NULL;
-	data->map->rows = 0;
-	data->map->row_len = 0;
+	data->map->line_len = 0;
+	data->map->lines = 0;
 	data->map->map_components = 0;
 	data->map->ceiling = NULL;
 	data->map->floor = NULL;

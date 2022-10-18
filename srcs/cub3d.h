@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:29:41 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/18 15:59:42 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_map
 	char	*south_texture;
 	char	*east_texture;
 	char	*west_texture;
-	int		row_len; //line_len
-	int		rows; //lines
+	int		line_len;
+	int		lines; //lines
 	int		map_components; //количество параметров в карте
 	char	*ceiling;
 	char	*floor;
@@ -88,6 +88,9 @@ void	save_texture(char **splitted_line, char **texture_path, t_info *data);
 
 //parser_save_colour.c
 void	save_colour(char **splitted_line, char **colour, t_info *data);
+
+//parser_check_map_lines.c
+void	check_map_lines(t_info *data, int i);
 
 
 //init.c
