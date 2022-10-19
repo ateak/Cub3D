@@ -6,11 +6,41 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/18 16:05:19 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/19 16:50:21 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	save_map_into_array(t_info *data, int i)
+{
+	int	n;
+	int	j;
+
+	data->map->map_array = malloc(sizeof(char *) * data->map->map_height);
+	if (data->map->map_array == NULL)
+		ft_error_exit("Malloc for map_array failed");
+	data->map->map_array[data->map->map_height] = NULL;
+	j = 0;
+	while (j < data->map->map_height)
+	{
+		data->map->map_array[j] = malloc(sizeof(char) * data->map->map_width);
+		if (data->map->map_array[j] == NULL)
+			ft_error_exit("Malloc for map_array failed");
+		ft_memset(data->map->map_array[j], '_', data->map->map_width);//заполняем пробелами чтобы выровнить строки и карта была прямоугольной
+		j++;
+	}
+	j = 0;
+	while (j < data->map->map_height)
+	{
+		n = -1;
+		while (data->map->data[i][++n])
+			data->map->map_array[j][n] = data->map->data[i][n];
+		data->map->map_array[j][n] = '\0';
+		j++;
+		i++;
+	}
+}
 
 void	get_map_data(t_map *map, int fd)
 {
@@ -43,7 +73,8 @@ void	parser(t_info *data, int fd)
 	i = 0;
 	get_map_data(data->map, fd); //сохраняем всю информацию из карты в двумерный массив
 	i = parse_map_data(data, i); //проверяем и распределяем информацию из двумерного массива в структуры и возвращаем номер строки, где начинается сама карта
-	check_map_lines(data, i); //проверка валидности карты, сохранение позиции игрока, камеры и размера карты
+	check_player_find_map_size(data, i); //проверка валидности карты, сохранение позиции игрока, камеры и размера карты
+	save_map_into_array(data, i);//выравниваем карту до прямогуольной и сохраняем в массив data->map->map_array
 	
 	printf("%d\n", i);
 }

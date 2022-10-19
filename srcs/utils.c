@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:03:15 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:00:17 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/19 15:39:31 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,24 @@ void	free_arr(char **arr)
 	arr = NULL; 
 }
 
-void	print_arr(t_info *data)
+void	print_map_data(t_info *data)
 {
 	int i = 0;
 
 	while (data->map->data[i])
 	{
 		printf("%s\n", data->map->data[i]);
+		i++;
+	}
+}
+
+void	print_map_array(t_info *data)
+{
+	int i = 0;
+
+	while (i < data->map->map_height)
+	{
+		printf("%s\n", data->map->map_array[i]);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:19:38 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:14:24 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/19 16:25:29 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	main(int argc, char **argv)
 		ft_error_exit("Malloc for data failed");
 	ft_init_data(data);
 	parser(data, fd);
-	print_arr(data); //удалить
-	print_map_struct(data->map); //удалить
+	//print_map_data(data); //удалить
+	//print_map_struct(data->map); //удалить
+	print_map_array(data);  //удалить
 		
 	return (0);
 }

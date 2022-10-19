@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/18 15:59:42 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/19 15:39:58 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WIN_NAME "cub3D"
 # define TEXTURE_W 64
 # define TEXTURE_H 64
-# define FOV 0.66
+# define FIELD_OF_VIEW 0.66
 
 typedef struct s_map
 {
@@ -37,9 +37,9 @@ typedef struct s_map
 	char	*south_texture;
 	char	*east_texture;
 	char	*west_texture;
-	int		line_len;
-	int		lines; //lines
-	int		map_components; //количество параметров в карте
+	int		map_width; 	//row_len
+	int		map_height;  //rows
+	int		map_components; //count_prm, количество параметров в карте
 	char	*ceiling;
 	char	*floor;
 	int		ceiling_clr;
@@ -89,20 +89,24 @@ void	save_texture(char **splitted_line, char **texture_path, t_info *data);
 //parser_save_colour.c
 void	save_colour(char **splitted_line, char **colour, t_info *data);
 
-//parser_check_map_lines.c
-void	check_map_lines(t_info *data, int i);
+//parser_check_player_find_map_size.c
+void	check_player_find_map_size(t_info *data, int i);
 
 
 //init.c
 void	ft_init_data(t_info *data);
 void	ft_init_map(t_info *data);
 
+//main.c
+void	save_map_into_array(t_info *data, int i);
+
 //utils.c
 void	ft_error_exit(char *str);
 void	free_ptr(char *ptr);
 void	free_arr(char **arr);
-void	print_arr(t_info *data); //удалить
+void	print_map_data(t_info *data); //удалить
 void	print_map_struct(t_map *map); //удалить
+void	print_map_array(t_info *data); //удалить
 
 
 

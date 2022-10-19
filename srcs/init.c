@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:02:07 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/18 15:55:17 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/18 16:31:32 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_init_map(t_info *data)
 	data->map->south_texture = NULL;
 	data->map->east_texture = NULL;
 	data->map->west_texture = NULL;
-	data->map->line_len = 0;
-	data->map->lines = 0;
+	data->map->map_width = 0;
+	data->map->map_height = 0;
 	data->map->map_components = 0;
 	data->map->ceiling = NULL;
 	data->map->floor = NULL;
@@ -37,7 +37,7 @@ void	ft_init_data(t_info *data)
 	data->pl_dir_x = -1.0;
 	data->pl_dir_y = 0.0;
 	data->cam_pln_x = 0.0;
-	data->cam_pln_y = FOV;
+	data->cam_pln_y = FIELD_OF_VIEW;
 	/*data->ctrl.key_esc = 0;
 	data->ctrl.key_up = 0;
 	data->ctrl.key_down = 0;

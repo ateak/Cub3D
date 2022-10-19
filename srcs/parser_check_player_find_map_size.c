@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_map_lines.c                           :+:      :+:    :+:   */
+/*   parser_check_player_find_map_size.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:33:32 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/18 15:59:26 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/18 16:39:20 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	count_map_line_len(t_info *data, char *line)
+static void	find_map_size(t_info *data, char *line)
 {
 	int	len;
 
 	len = (int)ft_strlen(line);
-	if (len > data->map->line_len)
-		data->map->line_len = len;
+	if (len > data->map->map_width)
+		data->map->map_width = len;
 	if (ft_strcmp(line, "") != 0)
-		data->map->lines++;
+		data->map->map_height++;
 	else
 		ft_error_exit("There is an empty row in the map!");
 }
@@ -31,7 +31,7 @@ static void	init_player_position(t_info *data, char direction, int i, int j)
 	data->player_x = (double)i + 0.5;
 	if (direction == 'E')
 	{
-		data->cam_pln_x = FOV;
+		data->cam_pln_x = FIELD_OF_VIEW;
 		data->cam_pln_y = 0;
 		data->pl_dir_x = 0;
 		data->pl_dir_y = 1;
@@ -39,13 +39,13 @@ static void	init_player_position(t_info *data, char direction, int i, int j)
 	else if (direction == 'S')
 	{
 		data->cam_pln_x = 0;
-		data->cam_pln_y = -FOV;
+		data->cam_pln_y = -FIELD_OF_VIEW;
 		data->pl_dir_x = 1;
 		data->pl_dir_y = 0;
 	}
 	else if (direction == 'W')
 	{
-		data->cam_pln_x = -FOV;
+		data->cam_pln_x = -FIELD_OF_VIEW;
 		data->cam_pln_y = 0;
 		data->pl_dir_x = 0;
 		data->pl_dir_y = -1;
@@ -63,31 +63,31 @@ static void	check_map_symbols(char c, int *players)
 		ft_error_exit("More then one player in the map!");
 }
 
-void	check_map_lines(t_info *data, int i)
+void	check_player_find_map_size(t_info *data, int i)
 {
-	char	**map_lines;
+	char	**map;
 	int		map_start;
 	int		j;
 
-	map_lines = data->map->data;
+	map = data->map->data;
 	map_start = i;
 	j = 0;
 	data->players = 0;
-	while (map_lines[i] != 0)
+	while (map[i] != 0)
 	{
 		j = 0;
-		while (map_lines[i][j] != 0)
+		while (map[i][j] != 0)
 		{
-			check_map_symbols(map_lines[i][j], &data->players);
-			if (map_lines[i][j] == 'N' || map_lines[i][j] == 'S' \
-				|| map_lines[i][j] == 'W' || map_lines[i][j] == 'E')
+			check_map_symbols(map[i][j], &data->players);
+			if (map[i][j] == 'N' || map[i][j] == 'S' \
+				|| map[i][j] == 'W' || map[i][j] == 'E')
 			{
-				init_player_position(data, map_lines[i][j], i - map_start, j);
-				map_lines[i][j] = '0';
+				init_player_position(data, map[i][j], i - map_start, j);
+				map[i][j] = '0';
 			}
 			j++;
 		}
-		count_map_line_len(data, map_lines[i]);
+		find_map_size(data, map[i]);
 		i++;
 	}
 	if (data->players == 0)
