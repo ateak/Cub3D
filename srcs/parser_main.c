@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/20 17:32:51 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/20 17:53:22 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	parser(t_info *data, int fd)
 	check_map_width_border(data);
 	check_border_map_in_height(data);
 	check_border_map_in_width(data);
-	free_arr(data->map->map_array);
+	//free_arr(data->map->map_array);
 }
