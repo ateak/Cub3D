@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:19:38 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/19 16:25:29 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/20 17:23:36 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	parser(data, fd);
 	//print_map_data(data); //удалить
 	//print_map_struct(data->map); //удалить
-	print_map_array(data);  //удалить
+	//print_map_array(data);  //удалить
 		
 	return (0);
 }

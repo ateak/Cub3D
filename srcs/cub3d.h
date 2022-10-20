@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/19 15:39:58 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/20 17:29:33 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ void	save_colour(char **splitted_line, char **colour, t_info *data);
 
 //parser_check_player_find_map_size.c
 void	check_player_find_map_size(t_info *data, int i);
+
+//parser_check_map_border.c
+void	check_map_height_border(t_info *data);
+void	check_map_width_border(t_info *data);
+void	check_border_map_in_height(t_info *data);
+void	check_border_map_in_width(t_info *data);
+void	ft_map_err_symb_exit(char error, char symbol, int i, int j);
 
 
 //init.c

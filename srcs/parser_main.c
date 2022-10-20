@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/19 16:50:21 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/20 17:32:51 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	save_map_into_array(t_info *data, int i)
 		data->map->map_array[j] = malloc(sizeof(char) * data->map->map_width);
 		if (data->map->map_array[j] == NULL)
 			ft_error_exit("Malloc for map_array failed");
-		ft_memset(data->map->map_array[j], '_', data->map->map_width);//заполняем пробелами чтобы выровнить строки и карта была прямоугольной
+		ft_memset(data->map->map_array[j], ' ', data->map->map_width);//заполняем пробелами чтобы выровнить строки и карта была прямоугольной
 		j++;
 	}
 	j = 0;
@@ -75,6 +75,9 @@ void	parser(t_info *data, int fd)
 	i = parse_map_data(data, i); //проверяем и распределяем информацию из двумерного массива в структуры и возвращаем номер строки, где начинается сама карта
 	check_player_find_map_size(data, i); //проверка валидности карты, сохранение позиции игрока, камеры и размера карты
 	save_map_into_array(data, i);//выравниваем карту до прямогуольной и сохраняем в массив data->map->map_array
-	
-	printf("%d\n", i);
+	check_map_height_border(data);
+	check_map_width_border(data);
+	check_border_map_in_height(data);
+	check_border_map_in_width(data);
+	free_arr(data->map->map_array);
 }

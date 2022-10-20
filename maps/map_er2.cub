@@ -1,11 +1,11 @@
-NO ./textures/redbrick.xpm
-SO ./textures/wood.xpm
-WE ./textures/greystone.xpm
-EA ./textures/bluestone.xpm
+NO ./more_textures/WALL74.xpm
+SO ./more_textures/WALL26.xpm
+WE ./more_textures/WALL84.xpm
+EA ./more_textures/WALL64.xpm
 
 
-C 100,200,255
-F 220,100,0
+C 153,204,255
+F 96,96,96
 
 
 
