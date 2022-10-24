@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_map_border.c                          :+:      :+:    :+:   */
+/*   parser_check_map_border_bonus.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:46:54 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 14:11:04 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/24 14:20:10 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 
 void	map_error_exit(char error, char symbol, int i, int j)

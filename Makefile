@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/20 17:19:19 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/24 14:22:23 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,18 @@ SRCS			=	get_next_line/get_next_line.c\
 					./srcs/parser_check_map_border.c\
 									
 
-SRCS_BONUS		=	
+SRCS_BONUS		=	get_next_line/get_next_line.c\
+					get_next_line/get_next_line_utils.c\
+					./srcs_bonus/main_bonus.c\
+					./srcs_bonus/init_bonus.c\
+					./srcs_bonus/utils_bonus.c\
+					./srcs_bonus/first_check_bonus.c\
+					./srcs_bonus/parser_main_bonus.c\
+					./srcs_bonus/parser_get_colour_texture_info_bonus.c\
+					./srcs_bonus/parser_save_colour_bonus.c\
+					./srcs_bonus/parser_save_texture_bonus.c\
+					./srcs_bonus/parser_check_player_find_map_size_bonus.c\
+					./srcs_bonus/parser_check_map_border_bonus.c\
 
 LIBDIR			= 	libft
 LIBFT_LIB		= 	$(LIBDIR)/libft.a
@@ -70,7 +81,7 @@ make_lib	:
 
 bonus	: $(NAME_BONUS)
 
-$(NAME_BONUS):	$(LIBFT_LIB) $(OBJS_BONUS)
+$(NAME_BONUS):	$(LIBFT_LIB) $(MLX_LIB) $(OBJS_BONUS)
 				$(CC) $(CFLAGS) $(MLX_FLAGS) -I$(LIBDIR) $(LIB) -I$(MLXDIR) $(MLX) $(OBJS_BONUS)  -o ${NAME_BONUS} 
 
 $(OBJS_DIR_BONUS)%.o: 	$(OBJS_DIR_BONUS)%.c $(HEADER_BONUS)

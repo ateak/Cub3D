@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_main.c                                      :+:      :+:    :+:   */
+/*   parser_main_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 09:01:52 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/24 15:28:34 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	save_map_into_array(t_info *data, int i)
 {
@@ -79,5 +79,5 @@ void	 parser(t_info *data, int fd)
 	check_map_width_border(data);
 	check_border_map_in_height(data);
 	check_border_map_in_width(data);
-	//free_arr(data->map->map_array);
+	free_arr(data->map->map_array);
 }
