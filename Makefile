@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/24 14:22:23 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/24 16:14:57 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS			=	get_next_line/get_next_line.c\
 					./srcs/parser_save_texture.c\
 					./srcs/parser_check_player_find_map_size.c\
 					./srcs/parser_check_map_border.c\
+					./srcs/working_with_textures.c\
 									
 
 SRCS_BONUS		=	get_next_line/get_next_line.c\

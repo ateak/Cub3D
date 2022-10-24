@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 09:01:07 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/24 16:13:21 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@
 # define TEXTURE_H 64
 # define FIELD_OF_VIEW 0.66
 
+# define UP 13
+# define DOWN 1
+# define LEFT 0
+# define RIGHT 2
+# define ESC 53
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+
+# define REDCROSS 17
+# define PRESS 2
+# define RELEASE 3
+
+
 typedef struct s_map
 {
 	char	*north_texture;
@@ -48,6 +61,60 @@ typedef struct s_map
 	char	**data;
 }			t_map;
 
+typedef struct s_wall
+{
+	int		x;
+	int		y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		rend_start;
+	int		rend_end;
+	double	wall_x;
+	int		texture_num;
+	int		texture_x;
+	int		texture_y;
+	double	texture_pos;
+	double	step;
+	int		color;
+}			t_wall;
+
+typedef struct s_img
+{
+	void	*img;
+	int		len;
+	int		bpp;
+	int		endian;
+	int		img_w;
+	int		img_h;
+	int		*data;
+}			t_img;
+
+typedef struct s_controls
+{
+	int		key_open;
+	int		key_esc;
+	int		key_up;
+	int		key_down;
+	int		key_left;
+	int		key_right;
+	int		key_arr_left;
+	int		key_arr_right;
+}			t_controls;
+
+
 typedef struct s_info
 {
 	double		player_x;
@@ -61,10 +128,11 @@ typedef struct s_info
 	int			players;
 	void		*win;
 	void		*mlx;
-	int			**texturs;
+	int			**textures;
 	int			buf_img[WIN_H][WIN_W];
 	t_map		*map;
-
+	t_img		img;
+	t_controls	ctrl;
 }				t_info;
 
 
@@ -114,6 +182,13 @@ void	free_arr(char **arr);
 void	print_map_data(t_info *data); //удалить
 void	print_map_struct(t_map *map); //удалить
 void	print_map_array(t_info *data); //удалить
+
+//MAIN_PART
+
+//working_with_textures.c
+int		malloc_for_textures(t_info *data);
+void	import_textures(t_info *data);
+void	make_xpm(t_info *data, int *texture, char *path, t_img *img);
 
 
 
