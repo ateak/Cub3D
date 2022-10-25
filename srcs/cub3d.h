@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 16:13:21 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:13:51 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,35 @@ void	print_map_array(t_info *data); //удалить
 int		malloc_for_textures(t_info *data);
 void	import_textures(t_info *data);
 void	make_xpm(t_info *data, int *texture, char *path, t_img *img);
+
+//game_loop.c
+int		game_loop(t_info *data);
+void	fill_floor_and_ceiling(t_info *data);
+void	wall_casting(t_info *data);
+void	rendering(t_info *data);
+void	key_action(t_info *data);
+
+//wall_casting_prt1.c
+void	wall_casting(t_info *data);
+void	ft_get_position(t_info *data, t_wall *wall);
+void	ft_get_step_side_dist(t_info *data, t_wall *wall);
+void	ft_dda(t_info *data, t_wall *wall);
+void	ft_wall_size_x(t_info *data, t_wall *wall);
+
+//wall_casting_prt2.c
+void	ft_choose_pixel(t_info *data, t_wall *wall);
+void	ft_pixels_screen_buf(t_info *data, t_wall *wall);
+
+//key_action_move.c
+void	move_forward(t_info *data);
+void	move_backward(t_info *data);
+void	move_left(t_info *data);
+void	move_right(t_info *data);
+
+//key_action_rotate.c
+void	rotate_right(t_info *data);
+void	rotate_left(t_info *data);
+
 
 
 

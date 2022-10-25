@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_casting.c                                     :+:      :+:    :+:   */
+/*   wall_casting_prt1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:47:39 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 16:49:23 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:08:05 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-
 
 void	ft_wall_size_x(t_info *data, t_wall *wall)
 {
@@ -86,21 +84,4 @@ void	ft_get_position(t_info *data, t_wall *wall)
 	wall->map_y = (int)data->player_y;
 	wall->delta_dist_x = fabs(1 / wall->ray_dir_x);//fabs  abs for float
 	wall->delta_dist_y = fabs(1 / wall->ray_dir_y);
-}
-
-void	wall_casting(t_info *data)
-{
-	t_wall	wall;
-
-	wall.x = 0;
-	while (wall.x < WIN_W)
-	{
-		ft_get_position(data, &wall);
-		ft_get_step_side_dist(data, &wall);
-		ft_dda(data, &wall); //Digital Differential Analysis
-		ft_wall_size_x(data, &wall);
-		ft_choose_pixel(data, &wall);
-		ft_pixels_screen_buf(data, &wall);
-		wall.x++;
-	}
 }
