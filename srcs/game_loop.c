@@ -6,13 +6,13 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:07:36 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/25 18:14:18 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/25 18:37:01 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_key_action(t_info *data)
+void	key_action(t_info *data)
 {
 	if (data->ctrl.key_up)
 		move_forward(data);
