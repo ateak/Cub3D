@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:47:39 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/25 18:08:05 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:33:01 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_dda(t_info *data, t_wall *wall)
 			wall->map_y = wall->map_y + wall->step_y;
 			wall->side = 1;
 		}
-		if (data->map->map_array[wall->map_x][wall->map_y] == '1')
+		if (data->map.map_array[wall->map_x][wall->map_y] == '1')
 			wall->hit = 1;
 	}
 }

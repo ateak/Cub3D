@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/25 18:36:29 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/26 19:28:48 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,10 @@ NAME			=	cub3D
 NAME_BONUS		=	cub3D_bonus
 
 SRCS			=	get_next_line/get_next_line.c\
-					get_next_line/get_next_line_utils.c\
 					./srcs/main.c\
 					./srcs/init.c\
 					./srcs/utils.c\
-					./srcs/first_check.c\
+					./srcs/parser_first_check.c\
 					./srcs/parser_main.c\
 					./srcs/parser_get_colour_texture_info.c\
 					./srcs/parser_save_colour.c\
@@ -33,11 +32,10 @@ SRCS			=	get_next_line/get_next_line.c\
 					./srcs/key_action_rotate.c\
 
 SRCS_BONUS		=	get_next_line/get_next_line.c\
-					get_next_line/get_next_line_utils.c\
 					./srcs_bonus/main_bonus.c\
 					./srcs_bonus/init_bonus.c\
 					./srcs_bonus/utils_bonus.c\
-					./srcs_bonus/first_check_bonus.c\
+					./srcs_bonus/parser_first_check_bonus.c\
 					./srcs_bonus/parser_main_bonus.c\
 					./srcs_bonus/parser_get_colour_texture_info_bonus.c\
 					./srcs_bonus/parser_save_colour_bonus.c\
@@ -63,7 +61,7 @@ OBJS_BONUS 		= 	$(SRCS_BONUS:%.c=%.o)
 OBJS_DIR		=	srcs/
 OBJS_DIR_BONUS	=	srcs_bonus/
 
-CFLAGS			=	-Wall -Wextra -Werror -g
+CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
 MLX_FLAGS		=	-lmlx -framework OpenGL -framework AppKit
 
 RM = rm -f

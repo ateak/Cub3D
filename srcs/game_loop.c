@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:07:36 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/25 18:37:01 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:33:23 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	fill_floor_and_ceiling(t_info *data)
 		x = 0;
 		while (x < WIN_W)
 		{
-			data->buf_img[y][x] = data->map->floor_clr;
-			data->buf_img[WIN_H - y - 1][x] = data->map->ceiling_clr;
+			data->buf_img[y][x] = data->map.floor_clr;
+			data->buf_img[WIN_H - y - 1][x] = data->map.ceiling_clr;
 			x++;
 		}
 		y++;

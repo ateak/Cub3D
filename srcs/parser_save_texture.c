@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:12:32 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:12:54 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:32:34 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ void	save_texture(char **splitted_line, char **texture_path, t_info *data)
 		ft_error_exit("Texture information is duplicated!");
 	check_texture_file(splitted_line[1]);
 	*texture_path = ft_strdup(splitted_line[1]);
-	data->map->map_components++;
+	data->map.map_components++;
 }

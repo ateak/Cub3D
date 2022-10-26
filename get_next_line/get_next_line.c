@@ -5,117 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 14:02:44 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/16 17:27:54 by ateak            ###   ########.fr       */
+/*   Created: 2022/10/26 18:42:55 by ateak             #+#    #+#             */
+/*   Updated: 2022/10/26 18:44:55 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_new_tail(char *tail)
+static void	ft_free(char **str)
 {
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (tail[i] && tail[i] != '\n')
-		i++;
-	if (!tail[i]) // tail[i] == null
+	if (*str != NULL && str != NULL)
 	{
-		free(tail);
-		return (NULL);
+		free(*str);
+		*str = NULL;
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen_gnl(tail) - i));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (tail[i])
-		str[j++] = tail[i++];
-	str[j] = '\0';
-	free(tail);
-	return (str);
 }
 
-char	*ft_create_line(char *tail)
+static int	ft_line(char **rest, char **line)
 {
-	char	*substr;
-	int		i;
-	int		substr_len;
-
-	i = 0;
-	if (!tail[i])
-		return (NULL);
-	while (tail[i] && tail[i] != '\n')
-		i++;
-	substr_len = i;
-	substr = (char *)malloc(sizeof(char) * (substr_len + 2));
-	if (substr == NULL)
-		return (NULL);
-	i = 0;
-	while (substr_len >= 0)
-	{
-		substr[i] = tail[i];
-		i++;
-		substr_len--;
-	}
-	substr[i] = '\0';
-	return (substr);
-}
-
-char	*ft_create_tail(char *buf, char *tail)
-{
+	char	*ptrn;
 	char	*tmp;
 
-	if (!tail)
+	ptrn = NULL;
+	tmp = NULL;
+	ptrn = ft_strchr(*rest, '\n');
+	if (ptrn)
 	{
-		tail = (char *)malloc(1 * sizeof(char));
-		tail[0] = '\0';
+		*ptrn = '\0';
+		tmp = *rest;
+		*line = ft_strdup(tmp);
+		ptrn++;
+		*rest = ft_strdup(ptrn);
+		ft_free(&tmp);
 	}
-	if (!tail || !buf)
-		return (NULL);
-	tmp = tail;
-	tail = ft_strjoin_gnl(tail, buf);
-	free(tmp);
-	return (tail);
+	else
+	{
+		tmp = *line;
+		*line = ft_strdup(*rest);
+		ft_free(rest);
+		return (0);
+	}
+	return (1);
 }
 
-char	*ft_read_file_and_form_tail(int fd, char *tail)
+static int	ft_exit(char **rest, char **line, int fd_read)
 {
-	char	*buf;
-	ssize_t	read_bytes;
+	if (fd_read == 0)
+	{
+		if (*rest)
+			return (ft_line(rest, line));
+		else
+			*line = ft_strdup("");
+		return (0);
+	}
+	else
+		return (ft_line(rest, line));
+}
 
+static int	ft_read(int fd, char *buf, int *fd_read)
+{
+	*fd_read = (int)read(fd, buf, BUFFER_SIZE);
+	return (*fd_read);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	char		*buf;
+	int			fd_read;
+	static char	*rest;
+	char		*tmp;
+
+	if ((read(fd, 0, 0) < 0) || line == NULL || BUFFER_SIZE <= 0)
+		return (-1);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buf == NULL)
-		return (NULL);
-	read_bytes = 1;
-	while (!ft_strchr_gnl(tail, '\n') && read_bytes != 0)
+	while ((ft_read(fd, buf, &fd_read)) > 0)
 	{
-		read_bytes = read(fd, buf, BUFFER_SIZE);
-		if (read_bytes == -1)
+		buf[fd_read] = '\0';
+		if (rest == NULL)
+			rest = ft_strdup(buf);
+		else
 		{
-			free(buf);
-			return (NULL);
+			tmp = ft_strjoin(rest, buf);
+			ft_free(&rest);
+			rest = tmp;
+			tmp = NULL;
 		}
-		buf[read_bytes] = '\0';
-		tail = ft_create_tail(buf, tail);
+		if (ft_strchr(rest, '\n'))
+			break ;
 	}
-	free(buf);
-	return (tail);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	*tail;
-	char		*line;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	tail = ft_read_file_and_form_tail(fd, tail);
-	if (!tail)
-		return (NULL);
-	line = ft_create_line(tail);
-	tail = ft_new_tail(tail);
-	return (line);
+	ft_free(&buf);
+	return (ft_exit(&rest, line, fd_read));
 }

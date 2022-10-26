@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:03:15 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/19 15:39:31 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:26:39 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_arr(char **arr)
 	arr = NULL; 
 }
 
-void	print_map_data(t_info *data)
+/*void	print_map_data(t_info *data)
 {
 	int i = 0;
 
@@ -78,4 +78,4 @@ void	print_map_struct(t_map *map)
 	//printf("floor: %s\n", map->floor);
 	printf("ceiling_clr: %d\n", map->ceiling_clr);
 	printf("floor_clr: %d\n", map->floor_clr);
-}
+}*/

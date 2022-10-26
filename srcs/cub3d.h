@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/25 18:13:51 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:55:21 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@
 # define PRESS 2
 # define RELEASE 3
 
-
 typedef struct s_map
 {
 	char	*north_texture;
 	char	*south_texture;
 	char	*east_texture;
 	char	*west_texture;
-	int		map_width; 	//row_len
-	int		map_height;  //rows
-	int		map_components; //count_prm, количество параметров в карте
+	int		map_width;
+	int		map_height;
+	int		map_components;
 	char	*ceiling;
 	char	*floor;
 	int		ceiling_clr;
 	int		floor_clr;
 	char	**map_array;
-	char	**data;
 }			t_map;
 
 typedef struct s_wall
@@ -114,7 +112,6 @@ typedef struct s_controls
 	int		key_arr_right;
 }			t_controls;
 
-
 typedef struct s_info
 {
 	double		player_x;
@@ -130,24 +127,24 @@ typedef struct s_info
 	void		*mlx;
 	int			**textures;
 	int			buf_img[WIN_H][WIN_W];
-	t_map		*map;
+	t_map		map;
 	t_img		img;
 	t_controls	ctrl;
 }				t_info;
 
-
 //PARSER
 
-//first_check.c
+//parser_first_check.c
 int		first_check(int argc, char **argv);
 void	check_map_extension(char **argv);
 
 //parser_main.c
-void	parser(t_info *data, int fd);
-void	get_map_data(t_map *map, int fd);
+void	parser(t_info *data, char **argv, int fd);
+void	get_map_data(char ***map, char **argv, int fd);
+void	save_map_into_array(char **map, t_info *data, int i);
 
 //parser_get_colour_texture_info.c
-int		parse_map_data(t_info *data, int i);
+int		parse_map_data(char ***map, t_info *data, int i);
 int		colour_texture_info(char *str);
 void	get_colour_texture_info(t_info *data, char **splitted_line);
 
@@ -158,32 +155,20 @@ void	save_texture(char **splitted_line, char **texture_path, t_info *data);
 void	save_colour(char **splitted_line, char **colour, t_info *data);
 
 //parser_check_player_find_map_size.c
-void	check_player_find_map_size(t_info *data, int i);
+void	check_player_find_map_size(char	**map, t_info *data, int i);
 
 //parser_check_map_border.c
-void	check_map_height_border(t_info *data);
-void	check_map_width_border(t_info *data);
-void	check_border_map_in_height(t_info *data);
-void	check_border_map_in_width(t_info *data);
+void	check_map_height_border(char **map, t_info *data);
+void	check_map_width_border(char **map, t_info *data);
+void	check_border_map_in_height(char **map, t_info *data);
+void	check_border_map_in_width(char **map, t_info *data);
 void	map_error_exit(char error, char symbol, int i, int j);
 
+//MAIN_PART
 
 //init.c
-void	ft_init_data(t_info *data);
-void	ft_init_map(t_info *data);
-
-//main.c
-void	save_map_into_array(t_info *data, int i);
-
-//utils.c
-void	ft_error_exit(char *str);
-void	free_ptr(char *ptr);
-void	free_arr(char **arr);
-void	print_map_data(t_info *data); //удалить
-void	print_map_struct(t_map *map); //удалить
-void	print_map_array(t_info *data); //удалить
-
-//MAIN_PART
+void	init_data(t_info *data);
+void	init_map(t_info *data);
 
 //working_with_textures.c
 int		malloc_for_textures(t_info *data);
@@ -218,7 +203,12 @@ void	move_right(t_info *data);
 void	rotate_right(t_info *data);
 void	rotate_left(t_info *data);
 
-
-
+//utils.c
+void	ft_error_exit(char *str);
+void	free_ptr(char *ptr);
+void	free_arr(char **arr);
+void	print_map_data(t_info *data); //удалить
+void	print_map_struct(t_map *map); //удалить
+void	print_map_array(t_info *data); //удалить
 
 #endif

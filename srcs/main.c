@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:19:38 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/25 18:48:56 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:48:51 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	main(int argc, char **argv)
 	fd = first_check(argc, argv); //проверка кол-ва аргументов, fd, расширения файла
 	data = malloc(sizeof(t_info));
 	if (data == NULL)
-		ft_error_exit("Malloc for data failed");
-	ft_init_data(data);
-	parser(data, fd);
+		ft_error_exit("Malloc error");
+	init_data(data);
+	parser(data, argv, fd);
 	//print_map_data(data); //удалить
 	//print_map_struct(data->map); //удалить
 	//print_map_array(data);  //удалить

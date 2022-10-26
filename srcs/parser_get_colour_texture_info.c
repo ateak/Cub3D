@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:08:14 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:13:13 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:38:40 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	get_colour_texture_info(t_info *data, char **splitted_line)
 {
 	if (!ft_strcmp(splitted_line[0], "NO"))
-		save_texture(splitted_line, &data->map->north_texture, data);
+		save_texture(splitted_line, &data->map.north_texture, data);
 	else if (!ft_strcmp(splitted_line[0], "SO"))
-		save_texture(splitted_line, &data->map->south_texture, data);
+		save_texture(splitted_line, &data->map.south_texture, data);
 	else if (!ft_strcmp(splitted_line[0], "WE"))
-		save_texture(splitted_line, &data->map->west_texture, data);
+		save_texture(splitted_line, &data->map.west_texture, data);
 	else if (!ft_strcmp(splitted_line[0], "EA"))
-		save_texture(splitted_line, &data->map->east_texture, data);
+		save_texture(splitted_line, &data->map.east_texture, data);
 	else if (!ft_strcmp(splitted_line[0], "C"))
-		save_colour(splitted_line, &data->map->ceiling, data);
+		save_colour(splitted_line, &data->map.ceiling, data);
 	else if (!ft_strcmp(splitted_line[0], "F"))
-		save_colour(splitted_line, &data->map->floor, data);
+		save_colour(splitted_line, &data->map.floor, data);
 }
 
 int	colour_texture_info(char *str)
@@ -54,13 +54,13 @@ static int	ft_empty_line(char **tmp_map, int *i, char **splitted_line)
 	return (0);
 }
 
-int	parse_map_data(t_info *data, int i)
+int	parse_map_data(char ***map, t_info *data, int i)
 {
 	char	**tmp_map;
 	char	**splitted_line;
 
 	splitted_line = NULL;
-	tmp_map = data->map->data;
+	tmp_map = *map;
 	while (tmp_map[i] != NULL)
 	{
 		splitted_line = ft_split(tmp_map[i], ' ');
@@ -72,12 +72,13 @@ int	parse_map_data(t_info *data, int i)
 			continue ;
 		else
 		{
-			if (data->map->map_components != 6)
+			if (data->map.map_components != 6)
 				ft_error_exit("There are not all parameters in the map!");
 			break ;
 		}
 		i++;
 		free_arr(splitted_line);
 	}
+	//free_arr(splitted_line);
 	return (i);
 }

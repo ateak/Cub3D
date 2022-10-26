@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:03:24 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/17 21:04:05 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/26 19:32:20 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	save_colour(char **splitted_line, char **colour, t_info *data)
 	if (splitted_colour[3])
 		ft_error_exit("Wrong map information!");
 	if (!ft_strcmp(splitted_line[0], "C"))
-		data->map->ceiling_clr = check_colour(splitted_colour);
+		data->map.ceiling_clr = check_colour(splitted_colour);
 	if (!ft_strcmp(splitted_line[0], "F"))
-		data->map->floor_clr = check_colour(splitted_colour);
+		data->map.floor_clr = check_colour(splitted_colour);
 	free_arr(splitted_colour);
-	data->map->map_components++;
+	data->map.map_components++;
 }
