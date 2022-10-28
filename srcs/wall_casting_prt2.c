@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:50:22 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:58:06 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:13:48 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	ft_choose_pixel(t_info *data, t_wall *wall)
 		wall->texture_x = TEXTURE_W - wall->texture_x - 1;
 	wall->step = 1.0 * TEXTURE_H / wall->line_height;
 	wall->texture_pos = (wall->rend_start - WIN_H / 2 + wall->line_height / 2)
-			* wall->step;
+		* wall->step;
 	wall->y = wall->rend_start;
 }

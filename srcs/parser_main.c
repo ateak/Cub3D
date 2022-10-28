@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:52:16 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:19:56 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	save_map_into_array(char **map, t_info *data, int i)
 		data->map.map_array[j] = malloc(sizeof(char) * data->map.map_width + 1);
 		if (data->map.map_array[j] == NULL)
 			ft_error_exit("Malloc for map_array failed");
-		ft_memset(data->map.map_array[j], ' ', data->map.map_width + 1);//заполняем пробелами чтобы выровнить строки и карта была прямоугольной
+		ft_memset(data->map.map_array[j], ' ', data->map.map_width + 1);
 		j++;
 	}
 	j = 0;
@@ -68,7 +68,7 @@ void	get_map_data(char ***map, char **argv, int fd)
 
 	gnl_res = 1;
 	tmp = NULL;
-	map_height = find_map_height(fd);//считает кол-во строк в файле карты создаем массив указателей на строки карты
+	map_height = find_map_height(fd);
 	tmp = (char **)malloc(sizeof(char *) * (map_height + 1));
 	if (tmp == NULL)
 		ft_error_exit("Malloc error");
@@ -86,17 +86,17 @@ void	get_map_data(char ***map, char **argv, int fd)
 	close(fd);
 }
 
-void	 parser(t_info *data, char **argv, int fd)
+void	parser(t_info *data, char **argv, int fd)
 {
 	char	**map;
 	int		i;
 
 	map = NULL;
 	i = 0;
-	get_map_data(&map, argv, fd); //сохраняем всю информацию из карты в двумерный массив
-	i = parse_map_data(&map, data, i); //проверяем и распределяем информацию из двумерного массива в структуры и возвращаем номер строки, где начинается сама карта
-	check_player_find_map_size(map, data, i); //проверка валидности карты, сохранение позиции игрока, камеры и размера карты
-	save_map_into_array(map, data, i);//выравниваем карту до прямогуольной и сохраняем в массив data->map->map_array
+	get_map_data(&map, argv, fd);
+	i = parse_map_data(&map, data, i);
+	check_player_find_map_size(map, data, i);
+	save_map_into_array(map, data, i);
 	check_map_height_border(data->map.map_array, data);
 	check_map_width_border(data->map.map_array, data);
 	check_border_map_in_height(data->map.map_array, data);

@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:08:14 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:38:40 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:17:28 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ int	parse_map_data(char ***map, t_info *data, int i)
 	while (tmp_map[i] != NULL)
 	{
 		splitted_line = ft_split(tmp_map[i], ' ');
-		if (ft_empty_line(tmp_map, &i, splitted_line)) //освобождаем память, если строка пустая, и увеличиваем i
+		if (ft_empty_line(tmp_map, &i, splitted_line))
 			continue ;
-		if (colour_texture_info(splitted_line[0])) //есть ли в начале строки информация о текстурах и цветах (NO, C и т.п.)
-			get_colour_texture_info(data, splitted_line);//сохраняем пути текстур стен и цвет потолка и пола и заодно проверка валидности
+		if (colour_texture_info(splitted_line[0]))
+			get_colour_texture_info(data, splitted_line);
 		else if (ft_empty_line(tmp_map, &i, splitted_line))
 			continue ;
 		else
@@ -79,6 +79,5 @@ int	parse_map_data(char ***map, t_info *data, int i)
 		i++;
 		free_arr(splitted_line);
 	}
-	//free_arr(splitted_line);
 	return (i);
 }

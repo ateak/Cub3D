@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:47:39 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:33:01 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:15:04 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	ft_get_step_side_dist(t_info *data, t_wall *wall)
 	else
 	{
 		wall->step_x = 1;
-		wall->side_dist_x = (wall->map_x + 1.0 - data->player_x) * wall->delta_dist_x;
+		wall->side_dist_x = (wall->map_x + 1.0 - data->player_x)
+			* wall->delta_dist_x;
 	}
 	if (wall->ray_dir_y < 0)
 	{
@@ -71,17 +72,18 @@ void	ft_get_step_side_dist(t_info *data, t_wall *wall)
 	else
 	{
 		wall->step_y = 1;
-		wall->side_dist_y = (wall->map_y + 1.0 - data->player_y) * wall->delta_dist_y;
+		wall->side_dist_y = (wall->map_y + 1.0 - data->player_y)
+			* wall->delta_dist_y;
 	}
 }
 
 void	ft_get_position(t_info *data, t_wall *wall)
 {
-	wall->camera_x = 2 * wall->x / (double)WIN_W - 1;//переводим из 0..640 в -1..1
-	wall->ray_dir_x = data->pl_dir_x + data->cam_pln_x * wall->camera_x;//(-1 + 0*(-1..1))
-	wall->ray_dir_y = data->pl_dir_y + data->cam_pln_y * wall->camera_x;//0+0.66*(-1..1)
+	wall->camera_x = 2 * wall->x / (double)WIN_W - 1;
+	wall->ray_dir_x = data->pl_dir_x + data->cam_pln_x * wall->camera_x;
+	wall->ray_dir_y = data->pl_dir_y + data->cam_pln_y * wall->camera_x;
 	wall->map_x = (int)data->player_x;
 	wall->map_y = (int)data->player_y;
-	wall->delta_dist_x = fabs(1 / wall->ray_dir_x);//fabs  abs for float
+	wall->delta_dist_x = fabs(1 / wall->ray_dir_x);
 	wall->delta_dist_y = fabs(1 / wall->ray_dir_y);
 }

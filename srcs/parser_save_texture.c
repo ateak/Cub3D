@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:12:32 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:32:34 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:16:22 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	check_texture_file(char *file_path)
 {
 	int	fd;
-	
+
 	fd = open(file_path, O_RDWR);
 	if (fd < 0)
 		ft_error_exit("Texture file not found");

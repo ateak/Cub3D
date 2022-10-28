@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:07:36 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:33:23 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:24:44 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	wall_casting(t_info *data)
 	{
 		ft_get_position(data, &wall);
 		ft_get_step_side_dist(data, &wall);
-		ft_dda(data, &wall); //Digital Differential Analysis
+		ft_dda(data, &wall);
 		ft_wall_size_x(data, &wall);
 		ft_choose_pixel(data, &wall);
 		ft_pixels_screen_buf(data, &wall);
@@ -87,7 +87,7 @@ void	fill_floor_and_ceiling(t_info *data)
 
 int	game_loop(t_info *data)
 {
-	fill_floor_and_ceiling(data);//заполняем буфер для экрана цветом потолка и пола по половине
+	fill_floor_and_ceiling(data);
 	wall_casting(data);
 	rendering(data);
 	key_action(data);

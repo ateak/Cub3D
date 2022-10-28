@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:02:07 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:29:27 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:24:12 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	init_map(t_info *data)
 {
-	//data->map = malloc(sizeof(t_map));
-	//if (data->map == NULL)
-		//ft_error_exit("Malloc for map failed");
 	data->map.north_texture = NULL;
 	data->map.south_texture = NULL;
 	data->map.east_texture = NULL;
@@ -29,7 +26,6 @@ void	init_map(t_info *data)
 	data->map.ceiling_clr = 0;
 	data->map.floor_clr = 0;
 	data->map.map_array = NULL;
-	
 }
 
 void	init_data(t_info *data)

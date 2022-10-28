@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:33:32 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:03:00 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:21:06 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	init_player_position(t_info *data, char direction, int i, int j)
 static void	check_map_symbols(char c, int *players)
 {
 	if (c != '1' && c != '0' && c != 'N' && c != 'S'
-			&& c != 'W' && c != 'E' && c != ' ')
+		&& c != 'W' && c != 'E' && c != ' ')
 		ft_error_exit("Invalid symbol in the map!");
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && *players < 1)
 		(*players)++;
@@ -67,7 +67,7 @@ void	check_player_find_map_size(char	**map, t_info *data, int i)
 {
 	int		map_start;
 	int		j;
-	
+
 	map_start = i;
 	j = 0;
 	data->players = 0;

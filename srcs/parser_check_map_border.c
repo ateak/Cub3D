@@ -6,12 +6,11 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:46:54 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:25:30 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:21:24 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	map_error_exit(char error, char symbol, int i, int j)
 {
