@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:06:36 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:56:23 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 17:35:41 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	import_textures(t_info *data)
 	make_xpm(data, data->textures[1], data->map.south_texture, &img);
 	make_xpm(data, data->textures[2], data->map.east_texture, &img);
 	make_xpm(data, data->textures[3], data->map.west_texture, &img);
-	make_xpm(data, data->textures[4], "./more_textures/WALL98.xpm", &img);
 }
 
 int	malloc_for_textures(t_info *data)

@@ -6,7 +6,7 @@ INCL	= get_next_line.h
 
 OBJS	= $(SRCS:.c=.o)
 
-FLAGS	= -Wall	-Wextra -Werror
+FLAGS	= -Wall	-Wextra -Werror -g 
 
 .c.o:
 		$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
