@@ -6,15 +6,14 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/26 19:28:48 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/28 12:41:17 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	cub3D
-NAME_BONUS		=	cub3D_bonus
+NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
-SRCS			=	get_next_line/get_next_line.c\
-					./srcs/main.c\
+SRCS			=	./srcs/main.c\
 					./srcs/init.c\
 					./srcs/utils.c\
 					./srcs/parser_first_check.c\
@@ -31,8 +30,7 @@ SRCS			=	get_next_line/get_next_line.c\
 					./srcs/key_action_move.c\
 					./srcs/key_action_rotate.c\
 
-SRCS_BONUS		=	get_next_line/get_next_line.c\
-					./srcs_bonus/main_bonus.c\
+SRCS_BONUS		=	./srcs_bonus/main_bonus.c\
 					./srcs_bonus/init_bonus.c\
 					./srcs_bonus/utils_bonus.c\
 					./srcs_bonus/parser_first_check_bonus.c\
@@ -43,59 +41,71 @@ SRCS_BONUS		=	get_next_line/get_next_line.c\
 					./srcs_bonus/parser_check_player_find_map_size_bonus.c\
 					./srcs_bonus/parser_check_map_border_bonus.c\
 
-LIBDIR			= 	libft
-LIBFT_LIB		= 	$(LIBDIR)/libft.a
-LIB				=	-L$(LIBDIR) -lft
-MLXDIR			= 	minilibx
-MLX_LIB			=	$(MLXDIR)/libmlx.a
-MLX				=	-L$(MLXDIR) -lft
-	
-					
-HEADER 			= 	./srcs/cub3d.h\
-					get_next_line/get_next_line.h\	
-HEADER_BONUS 	= 	./srcs_bonus/cub3d_bonus.h\
-					get_next_line/get_next_line.h\
 
-OBJS			=	$(SRCS:%.c=%.o)
-OBJS_BONUS 		= 	$(SRCS_BONUS:%.c=%.o)
-OBJS_DIR		=	srcs/
-OBJS_DIR_BONUS	=	srcs_bonus/
+OBJS = $(SRCS:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-CFLAGS			=	-Wall -Wextra -Werror -g -fsanitize=address
-MLX_FLAGS		=	-lmlx -framework OpenGL -framework AppKit
+OBJS_DIR		= srcs/
+OBJS_BONUS_DIR	= srcs_bonus/
 
-RM = rm -f
+HEADER 			= ./srcs/cub3d.h
+HEADER_BONUS 	= ./srcs_bonus/cub3d_bonus.h
 
-.PHONY	:	all clean fclean re make_lib
+CFLAGS 			= -Wall -Werror -Wextra
 
-all		:	$(NAME)
+RM 				= rm -rf
 
-$(NAME)	:	$(LIBFT_LIB) $(MLX_LIB) $(OBJS)
-			$(CC) $(CFLAGS) $(MLX_FLAGS) -I$(LIBDIR) $(LIB) -I$(MLXDIR) $(MLX) $(OBJS)  -o ${NAME}
+# only for MacOS graphics not arm.
+MLX_FLAGS 		= -lmlx -L ./minilibx -framework OpenGL -framework AppKit
 
-$(OBJS_DIR)%.o: 	$(OBJS_DIR)%.c $(HEADER)
-					$(CC) $(CFLAGS) -I$(LIBDIR) -I$(MLXDIR) -c $< -o $@
-	
-$(LIBFT_LIB):	make_lib
+# FOR LIBS
+LIBDIR		= libft
 
-make_lib	:	
-		make -C $(LIBDIR) 
-		make -C $(MLXDIR)
+LIBFT_LIB	= $(LIBDIR)/libft.a
 
-bonus	: $(NAME_BONUS)
+LIB			= -L$(LIBDIR) -lft
 
-$(NAME_BONUS):	$(LIBFT_LIB) $(MLX_LIB) $(OBJS_BONUS)
-				$(CC) $(CFLAGS) $(MLX_FLAGS) -I$(LIBDIR) $(LIB) -I$(MLXDIR) $(MLX) $(OBJS_BONUS)  -o ${NAME_BONUS} 
+GNL			= get_next_line/get_next_line.a
 
-$(OBJS_DIR_BONUS)%.o: 	$(OBJS_DIR_BONUS)%.c $(HEADER_BONUS)
-						$(CC) $(CFLAGS) -I$(LIBDIR) -I$(MLXDIR) -c $< -o $@
+MLX_DIR		= minilibx
 
-clean	:
-	make clean -C $(LIBDIR) 
-	make clean -C $(MLXDIR)
-	$(RM) $(OBJS) $(OBJS_BONUS) 
 
-fclean	: 	clean
+all: $(NAME)
+
+$(NAME): $(OBJS)
+			make -C $(LIBDIR)
+			make -C get_next_line
+			make -C $(MLX_DIR)
+			$(CC) $(CFLAGS) $(LIBFT_LIB) $(GNL) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+
+$(OBJS_DIR)%.o:	$(OBJS_DIR)%.c $(HEADER)
+				$(CC) $(CFLAGS) -c $< -o $@
+
+
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(OBJS_BONUS)
+			make -C $(LIBDIR)
+			make -C get_next_line
+			make -C $(MLX_DIR)
+			$(CC) $(CFLAGS) $(LIBFT_LIB) $(GNL) $(OBJS_BONUS) $(MLX_FLAGS) -o $(NAME_BONUS)
+
+$(OBJS_BONUS_DIR)%.o:	$(OBJS_BONUS_DIR)%.c $(HEADER_BONUS)
+						$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+		make clean -C $(LIBDIR)
+		make clean -C get_next_line
+		make clean -C $(MLX_DIR)
+		$(RM) $(OBJS) $(OBJS_BONUS)
+
+fclean: clean
+	make fclean -C libft
+	make fclean -C get_next_line
 	$(RM) $(NAME) $(NAME_BONUS)
 
-re		:	fclean all
+re: fclean all
+
+rebonus: fclean bonus
+
+.PHONY: all bonus clean fclean re rebonus

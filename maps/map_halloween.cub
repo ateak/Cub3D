@@ -1,0 +1,16 @@
+NO ./more_textures/Skeletons.xpm
+SO ./more_textures/Ghost.xpm
+WE ./more_textures/Witch.xpm
+EA ./more_textures/Darth.xpm
+
+
+C 47,98,164
+F 0,0,0
+
+1111111111111111
+1000000100000001
+1000001100000001
+1100110000111011
+1000000100000001
+10000001000E0001
+1111111111111111

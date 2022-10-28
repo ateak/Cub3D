@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/26 19:55:21 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 12:42:52 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../get_next_line/get_next_line.h"
 # include "../minilibx/mlx.h"
 
-# define WIN_W 640
-# define WIN_H 480
+# define WIN_W 1040
+# define WIN_H 880
 # define WIN_NAME "cub3D"
 # define TEXTURE_W 64
 # define TEXTURE_H 64
