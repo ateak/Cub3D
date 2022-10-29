@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_check_bonus.c                                :+:      :+:    :+:   */
+/*   parser_first_check_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 13:04:40 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 14:19:53 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 19:38:40 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
 
 void	check_map_extension(char **argv)
 {
@@ -40,5 +39,5 @@ int	first_check(int argc, char **argv)
 	fd = open(argv[1], O_RDWR);
 	if (fd < 0)
 		ft_error_exit("Can't open the file");
-	return(fd);
+	return (fd);
 }

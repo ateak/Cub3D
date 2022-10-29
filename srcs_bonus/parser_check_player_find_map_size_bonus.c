@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:33:32 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/24 14:20:14 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 20:05:23 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	find_map_size(t_info *data, char *line)
 	int	len;
 
 	len = (int)ft_strlen(line);
-	if (len > data->map->map_width)
-		data->map->map_width = len;
+	if (len > data->map.map_width)
+		data->map.map_width = len;
 	if (ft_strcmp(line, "") != 0)
-		data->map->map_height++;
+		data->map.map_height++;
 	else
 		ft_error_exit("There is an empty row in the map!");
 }
@@ -54,8 +54,8 @@ static void	init_player_position(t_info *data, char direction, int i, int j)
 
 static void	check_map_symbols(char c, int *players)
 {
-	if (c != '1' && c != '2' && c != '0' && c != 'N' && c != 'S'
-			&& c != 'W' && c != 'E' && c != ' ')
+	if (c != '0' && c != '1' && c != '2' && c != 'N' && c != 'S'
+		&& c != 'W' && c != 'E' && c != ' ')
 		ft_error_exit("Invalid symbol in the map!");
 	if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && *players < 1)
 		(*players)++;
@@ -63,13 +63,11 @@ static void	check_map_symbols(char c, int *players)
 		ft_error_exit("More then one player in the map!");
 }
 
-void	check_player_find_map_size(t_info *data, int i)
+void	check_player_find_map_size(char	**map, t_info *data, int i)
 {
-	char	**map;
 	int		map_start;
 	int		j;
 
-	map = data->map->data;
 	map_start = i;
 	j = 0;
 	data->players = 0;

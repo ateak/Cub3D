@@ -1,15 +1,15 @@
-NO ./more_textures/WALL74.xpm
-SO ./more_textures/WALL27.xpm
-WE ./more_textures/WALL84.xpm
-EA ./more_textures/WALL64.xpm
+NO ./more_textures/Skeletons.xpm
+SO ./more_textures/Ghost.xpm
+WE ./more_textures/Witch.xpm
+EA ./more_textures/Darth.xpm
 
 
-C 153,204,255
-F 96,96,96
+C 47,98,164
+F 0,0,0
 
      1111111111111111111111            
    1110000000000000000000011           
-  101110000111111110111100011          
+  101110000111211110111100011          
  10000000010000000001000000011         
  10000000010000000001000000011         
  10000000010000000001000000011         

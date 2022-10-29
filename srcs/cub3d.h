@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/28 12:42:52 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 20:26:41 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,6 @@ void	rendering(t_info *data);
 void	key_action(t_info *data);
 
 //wall_casting_prt1.c
-void	wall_casting(t_info *data);
 void	ft_get_position(t_info *data, t_wall *wall);
 void	ft_get_step_side_dist(t_info *data, t_wall *wall);
 void	ft_dda(t_info *data, t_wall *wall);

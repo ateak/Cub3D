@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:13:48 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/28 12:19:56 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/28 20:08:18 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	save_map_into_array(char **map, t_info *data, int i)
 	int	n;
 	int	j;
 
-	data->map.map_array = malloc(sizeof(char *) * data->map.map_height + 1);
+	data->map.map_array = malloc(sizeof(char *) * data->map.map_height);
 	if (data->map.map_array == NULL)
 		ft_error_exit("Malloc for map_array failed");
 	j = 0;
 	while (j < data->map.map_height)
 	{
-		data->map.map_array[j] = malloc(sizeof(char) * data->map.map_width + 1);
+		data->map.map_array[j] = malloc(sizeof(char) * data->map.map_width);
 		if (data->map.map_array[j] == NULL)
 			ft_error_exit("Malloc for map_array failed");
-		ft_memset(data->map.map_array[j], ' ', data->map.map_width + 1);
+		ft_memset(data->map.map_array[j], ' ', data->map.map_width);
 		j++;
 	}
 	j = 0;
