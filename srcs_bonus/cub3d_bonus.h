@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:31:23 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/29 14:33:03 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/29 15:58:16 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 # define ESC 53
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
-# define ARROW_UP 126
-# define ARROW_DOWN 125
 # define MOUSE_SHOW 46
 
 # define REDCROSS 17
@@ -129,9 +127,6 @@ typedef struct s_controls
 	int		key_right;
 	int		key_arr_left;
 	int		key_arr_right;
-	int		key_arr_right;
-	int		key_arr_up;
-	int		key_arr_down;
 	int		key_mouse;
 	int		mouse_rotate;
 }			t_controls;
@@ -223,8 +218,6 @@ void	move_left(t_info *data);
 void	move_right(t_info *data);
 
 //key_action_rotate_bonus.c
-void	ft_fov_plus(t_info *data);
-void	ft_fov_minus(t_info *data);
 void	rotate_right(t_info *data);
 void	rotate_left(t_info *data);
 

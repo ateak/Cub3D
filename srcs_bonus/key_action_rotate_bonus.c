@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:06:09 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/29 13:41:58 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/29 15:57:31 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,4 @@ void	rotate_right(t_info *data)
 					data->cam_pln_y * sin(-data->speed_rotate);
 	data->cam_pln_y = old_plane_x * sin(-data->speed_rotate) + \
 					data->cam_pln_y * cos(-data->speed_rotate);
-}
-
-void	ft_fov_minus(t_info *data)
-{
-	data->cam_pln_x *= 0.9;
-	data->cam_pln_y *= 0.9;
-	data->ctrl.key_arr_down = 0;
-}
-
-void	ft_fov_plus(t_info *data)
-{
-	data->cam_pln_x *= 1.1;
-	data->cam_pln_y *= 1.1;
-	data->ctrl.key_arr_up = 0;
 }

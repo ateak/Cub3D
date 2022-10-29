@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:07:36 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/29 13:42:40 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/29 15:57:23 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ void	key_action(t_info *data)
 		move_left(data);
 	if (data->ctrl.key_right)
 		move_right(data);
-	if (data->ctrl.key_arr_up)
-		ft_fov_plus(data);
-	if (data->ctrl.key_arr_down)
-		ft_fov_minus(data);
 	if (data->ctrl.key_arr_right)
 		rotate_right(data);
 	if (data->ctrl.key_arr_left)

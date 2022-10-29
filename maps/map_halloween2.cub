@@ -1,7 +1,7 @@
-NO ./more_textures/Skeletons.xpm
-SO ./more_textures/Ghost.xpm
-WE ./more_textures/Witch.xpm
-EA ./more_textures/Darth.xpm
+NO ./textures/Skeletons.xpm
+SO ./textures/Ghost.xpm
+WE ./textures/Witch.xpm
+EA ./textures/Darth.xpm
 
 
 C 47,98,164

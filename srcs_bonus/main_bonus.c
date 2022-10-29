@@ -6,7 +6,7 @@
 /*   By: ateak <ateak@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 17:19:38 by ateak             #+#    #+#             */
-/*   Updated: 2022/10/29 14:03:21 by ateak            ###   ########.fr       */
+/*   Updated: 2022/10/29 15:57:40 by ateak            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ int	key_release(int key, t_info *data)
 		data->ctrl.key_arr_right = 0;
 	else if (key == ARROW_LEFT)
 		data->ctrl.key_arr_left = 0;
-	else if (key == ARROW_UP)
-		data->ctrl.key_arr_up = 1;
-	else if (key == ARROW_DOWN)
-		data->ctrl.key_arr_down = 1;
 	else if (key == MOUSE_SHOW)
 		data->ctrl.key_mouse = !data->ctrl.key_mouse;
 	return (0);

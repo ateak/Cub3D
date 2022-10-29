@@ -6,7 +6,7 @@
 #    By: ateak <ateak@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/22 16:34:27 by ateak             #+#    #+#              #
-#    Updated: 2022/10/29 14:32:51 by ateak            ###   ########.fr        #
+#    Updated: 2022/10/29 15:13:40 by ateak            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS_BONUS		=	./srcs_bonus/main_bonus.c\
 					./srcs_bonus/wall_casting_prt2_bonus.c\
 					./srcs_bonus/game_loop_bonus.c\
 					./srcs_bonus/key_action_move_bonus.c\
+					./srcs_bonus/key_action_rotate_bonus.c\
 					./srcs_bonus/realize_doors_bonus.c\
 					./srcs_bonus/realize_minimap_bonus.c\
 					./srcs_bonus/realize_mouse_rotate_bonus.c\
